@@ -1,0 +1,25 @@
+R 800 600
+
+NO textures/gunchim_rupy.xpm
+S textures/barrel.xpm
+SO textures/happy_rupy.xpm
+WE textures/angry_rupy.xpm
+EA textures/swear_rupy.xpm
+
+F 200,100,70
+C 70,144,103
+
+
+    11111
+111110001
+100020001
+111100011
+100000000111
+10000000111
+100W0020111
+10000000111
+10000000111
+10000000111
+10000000011
+1000000001
+1111111111
