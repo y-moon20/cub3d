@@ -6,7 +6,7 @@
 /*   By: yomoon <yomoon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 22:12:22 by yomoon            #+#    #+#             */
-/*   Updated: 2021/02/20 16:27:21 by yomoon           ###   ########.fr       */
+/*   Updated: 2021/02/20 21:42:29 by yomoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		check_name(char *file, char *str)
 
 int		main(int ac, char *av[])
 {
-	if (ac == 3 && check_name(av[1], ".cub") && !ft_strncmp(av[2], "--save", 6))
+	if (ac == 3 && check_name(av[1], ".cub") && !ft_strncmp(av[2], "--save\0", 7))
 		return (init_game(av[1], 1));
 	else if (ac == 2 && check_name(av[1], ".cub"))
 		return (init_game(av[1], 0));
