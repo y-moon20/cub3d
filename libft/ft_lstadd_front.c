@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yomoon <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: yomoon <yomoon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/28 01:06:35 by yomoon            #+#    #+#             */
-/*   Updated: 2020/08/28 01:43:39 by yomoon           ###   ########.fr       */
+/*   Created: 2020/07/13 12:23:57 by yomoon            #+#    #+#             */
+/*   Updated: 2021/02/19 18:24:07 by yomoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (new)
+	if (!*lst)
 	{
-		if (!*lst)
-		{
-			*lst = new;
-			return ;
-		}
-		new->next = *lst;
 		*lst = new;
+		return ;
 	}
+	if (!new)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yomoon <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: yomoon <yomoon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/10 12:25:05 by yomoon            #+#    #+#             */
-/*   Updated: 2020/08/14 02:38:21 by yj               ###   ########.fr       */
+/*   Created: 2020/08/11 22:18:10 by yomoon            #+#    #+#             */
+/*   Updated: 2021/02/19 18:28:37 by yomoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,24 @@
 
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	size_t			i;
-	unsigned char	*d;
-	unsigned char	*s;
+	unsigned char		*d;
+	const unsigned char	*s;
 
-	d = (unsigned char *)dst;
-	s = (unsigned char *)src;
-	i = 0;
-	while (i < n)
+	d = dst;
+	s = src;
+	while (n > 0 && *s != (unsigned char)c)
 	{
-		d[i] = s[i];
-		if (s[i] == (unsigned char)c)
-			return (&dst[i + 1]);
-		i++;
+		*d = *s;
+		d++;
+		s++;
+		n--;
 	}
-	return (NULL);
+	if (*s == (unsigned char)c)
+	{
+		*d = *s;
+		d++;
+		return (d);
+	}
+	else
+		return (NULL);
 }

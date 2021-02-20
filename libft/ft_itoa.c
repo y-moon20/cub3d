@@ -3,69 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yomoon <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: yomoon <yomoon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/21 18:17:38 by yomoon            #+#    #+#             */
-/*   Updated: 2020/08/23 02:14:56 by yomoon           ###   ########.fr       */
+/*   Created: 2021/07/11 12:22:13 by yomoon            #+#    #+#             */
+/*   Updated: 2021/02/19 18:23:24 by yomoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		count_len(long n)
+static int		num_size(long long temp)
 {
-	int	cnt;
+	int			size;
 
-	cnt = 0;
+	size = 0;
+	if (temp == 0)
+		return (1);
+	while (temp > 0)
+	{
+		size++;
+		temp /= 10;
+	}
+	return (size);
+}
+
+char			*ft_itoa(int n)
+{
+	int			size;
+	long long	temp;
+	char		*ret;
+
+	size = 0;
+	temp = n;
+	if (temp < 0)
+	{
+		size++;
+		temp *= -1;
+	}
+	size += num_size(temp);
+	if (!(ret = (char *)malloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	ret[size--] = '\0';
+	if ((temp = n) < 0)
+		temp *= -1;
+	while ((size + 1 > 0 && n >= 0) || (size > 0 && n < 0))
+	{
+		ret[size--] = temp % 10 + '0';
+		temp /= 10;
+	}
 	if (n < 0)
-	{
-		cnt = 1;
-		n *= -1;
-	}
-	if (n == 0)
-		cnt = 1;
-	while (n > 0)
-	{
-		n = n / 10;
-		cnt++;
-	}
-	return (cnt);
-}
-
-char	*change_nbr(char *ret, int i, long nbr)
-{
-	ret[i] = '\0';
-	i--;
-	if (nbr < 0)
-	{
-		ret[0] = '-';
-		nbr *= -1;
-	}
-	if (nbr == 0)
-	{
-		ret[0] = '0';
-		return (ret);
-	}
-	while (nbr > 0)
-	{
-		ret[i] = (nbr % 10) + '0';
-		nbr = nbr / 10;
-		i--;
-	}
-	return (ret);
-}
-
-char	*ft_itoa(int c)
-{
-	char	*ret;
-	long	nbr;
-	int		i;
-
-	nbr = c;
-	i = count_len(c);
-	ret = (char*)malloc(sizeof(char) * (i + 1));
-	if (!ret)
-		return (0);
-	ret = change_nbr(ret, i, nbr);
+		ret[size] = '-';
 	return (ret);
 }

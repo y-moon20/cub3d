@@ -3,98 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yomoon <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: yomoon <yomoon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/23 11:30:41 by yomoon            #+#    #+#             */
-/*   Updated: 2020/09/29 22:36:59 by yomoon           ###   ########.fr       */
+/*   Created: 2020/08/23 11:22:01 by yomoon            #+#    #+#             */
+/*   Updated: 2021/02/19 18:32:31 by yomoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		strlen_sep(char const *str, char c)
+static int	count_word(char const *s, char c)
 {
-	int		ret;
+	int		i;
+	int		flag;
+	int		count;
 
-	ret = 0;
+	count = 0;
+	i = 0;
+	flag = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == c)
+		{
+			if (flag == 1)
+			{
+				count++;
+				flag = 0;
+			}
+		}
+		else
+			flag = 1;
+		i++;
+	}
+	if (flag == 1)
+		count++;
+	return (count);
+}
+
+static void	put_word(char *ret[], char const *s, char *str, char c)
+{
+	int		i;
+	int		len;
+
+	i = 0;
+	len = 0;
 	while (*str != '\0')
 	{
 		if (*str == c)
-			break ;
-		++ret;
-		++str;
-	}
-	return (ret);
-}
-
-static int		count_word(char const *str, char c)
-{
-	int		ret;
-	int		len;
-
-	ret = 0;
-	while (*str != '\0')
-	{
-		len = strlen_sep(str, c);
-		if (len != 0)
 		{
-			++ret;
-			str += len;
+			if (len != 0)
+			{
+				ret[i++] = ft_substr(s, str - s - len, len);
+				len = 0;
+			}
 		}
 		else
-			++str;
+			len++;
+		str++;
 	}
-	return (ret);
+	if (len != 0)
+		ret[i++] = ft_substr(s, str - s - len, len);
+	ret[i] = 0;
 }
 
-static void		ft_free(char **ret)
-{
-	int	i;
-
-	i = 0;
-	if (*ret[0] != '\0')
-	{
-		while (*ret[i] != '\0')
-			free(ret[i++]);
-	}
-	free(ret);
-}
-
-static int		split_alloc(char **ret, int len, int i)
-{
-	if (!(ret[i] = (char*)malloc(sizeof(char) * (len + 1))))
-	{
-		ft_free(ret);
-		return (0);
-	}
-	return (1);
-}
-
-char			**ft_split(char const *s, char c)
+char		**ft_split(char const *s, char c)
 {
 	char	**ret;
-	int		len;
-	int		i;
+	char	*str;
 
 	if (!s)
-		return (0);
-	len = count_word(s, c);
-	if (!(ret = (char**)malloc(sizeof(char*) * (len + 1))))
-		return (0);
-	ret[len] = 0;
-	i = 0;
-	while (*s != '\0')
-	{
-		len = strlen_sep(s, c);
-		if (len != 0)
-		{
-			if (!(split_alloc(ret, len, i)))
-				return (0);
-			ft_strlcpy(ret[i++], s, len + 1);
-			s += len;
-		}
-		else
-			s++;
-	}
+		return (NULL);
+	str = (char *)s;
+	ret = (char **)malloc(sizeof(char *) * (count_word(s, c) + 1));
+	if (!ret)
+		return (NULL);
+	put_word(ret, s, str, c);
 	return (ret);
 }

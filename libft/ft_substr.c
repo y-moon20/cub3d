@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yomoon <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: yomoon <yomoon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/20 17:41:41 by yomoon            #+#    #+#             */
-/*   Updated: 2020/08/21 18:32:36 by yomoon           ###   ########.fr       */
+/*   Created: 2020/08/12 17:20:52 by yomoon            #+#    #+#             */
+/*   Updated: 2021/02/19 18:42:21 by yomoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,28 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*ret;
-	size_t	i;
+	char			*ret;
+	unsigned int	i;
 
-	i = 0;
 	if (!s)
-		return (0);
-	if (start < 0 || len < 0)
-		return (0);
-	if (start > ft_strlen(s))
+		return (NULL);
+	i = ft_strlen(s);
+	if (i - start < len)
+		len = i - start;
+	ret = (char *)malloc(sizeof(char) * (len + 1));
+	if (!ret)
+		return (NULL);
+	if (i < start)
 	{
-		ret = ft_calloc(sizeof(char), 1);
+		ret[0] = '\0';
 		return (ret);
 	}
-	while (s[start + i] != '\0' && i < len)
-		i++;
-	ret = ft_calloc(sizeof(char), i + 1);
-	if (!ret)
-		return (0);
 	i = 0;
-	while (s[start + i] != '\0' && i < len)
+	while (len > i && s[start + i])
 	{
 		ret[i] = s[start + i];
 		i++;
 	}
+	ret[i] = '\0';
 	return (ret);
 }

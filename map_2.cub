@@ -1,12 +1,12 @@
 R 600 600
-NO textures/angry_rupy.xpm
-SO textures/gunchim_rupy.xpm
-WE textures/happy_rupy.xpm
-EA textures/swear_rupy.xpm
+NO textures/gamm.xpm
+SO textures/gonn.xpm
+WE textures/gunn.xpm
+EA textures/leee.xpm
 
-S textures/barrel.xpm
-F 30,225,0
-C 0,0,220
+S textures/S_blackhole3.xpm
+C 30,0,0
+F 0,0,0
 
 1   1   1111111111111111111111111
 1   1   1000000000110000000000001

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yomoon <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: yomoon <yomoon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/30 17:07:02 by yomoon            #+#    #+#             */
-/*   Updated: 2020/07/10 12:40:15 by yomoon           ###   ########.fr       */
+/*   Created: 2020/07/11 12:27:14 by yomoon            #+#    #+#             */
+/*   Updated: 2021/02/19 18:38:01 by yomoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 size_t	ft_strlen(const char *s)
 {
-	int i;
+	size_t	len;
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
+	len = 0;
+	if (!s)
+		return (0);
+	while (s[len] != '\0')
+		len++;
+	return (len);
 }

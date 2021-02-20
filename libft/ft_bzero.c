@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yomoon <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: yomoon <yomoon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/10 12:24:16 by yomoon            #+#    #+#             */
-/*   Updated: 2020/08/14 00:44:19 by yj               ###   ########.fr       */
+/*   Created: 2020/07/21 20:10:20 by yomoon            #+#    #+#             */
+/*   Updated: 2021/02/19 18:20:37 by yomoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	char	*string;
-	size_t	i;
+	unsigned char	*p;
 
-	string = (char *)s;
-	i = 0;
-	while (i < n)
+	p = s;
+	while (n > 0)
 	{
-		string[i] = 0;
-		i++;
+		*p = 0;
+		p++;
+		n--;
 	}
 }

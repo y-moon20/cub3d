@@ -3,31 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yomoon <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: yomoon <yomoon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/18 00:08:15 by yomoon            #+#    #+#             */
-/*   Updated: 2020/12/30 03:08:34 by yomoon           ###   ########.fr       */
+/*   Created: 2020/07/22 11:29:33 by yomoon            #+#    #+#             */
+/*   Updated: 2021/02/19 18:39:20 by yomoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strndup(const char *s1, size_t size)
+char		*ft_strndup(char *str, size_t size)
 {
-	char	*dup;
+	char	*ret;
 	size_t	i;
 
-	if (!s1 || size < 0)
-		return (0);
-	dup = (char*)malloc(sizeof(char) * size + 1);
-	if (!dup)
-		return (0);
 	i = 0;
-	while (i < size && s1[i] != '\0')
+	if (!str)
+		return (NULL);
+	if (!(ret = (char *)malloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	while (i < size && str[i] != '\0')
 	{
-		dup[i] = s1[i];
+		ret[i] = str[i];
 		i++;
 	}
-	dup[i] = '\0';
-	return (dup);
+	ret[i] = '\0';
+	return (ret);
 }

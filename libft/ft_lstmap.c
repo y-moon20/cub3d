@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yomoon <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: yomoon <yomoon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/28 02:13:28 by yomoon            #+#    #+#             */
-/*   Updated: 2020/08/30 01:32:09 by yomoon           ###   ########.fr       */
+/*   Created: 2020/07/16 12:12:58 by yomoon            #+#    #+#             */
+/*   Updated: 2021/02/19 18:27:11 by yomoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,22 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*new_list;
-	t_list	*new_element;
+	t_list	*ret;
+	t_list	*temp;
 
 	if (!lst || !f)
-		return (0);
-	new_list = 0;
+		return (NULL);
+	ret = NULL;
 	while (lst)
 	{
-		new_element = ft_lstnew(f(lst->content));
-		if (!new_element)
+		if (!(temp = ft_lstnew(f(lst->content))))
 		{
-			if (!del)
-				return (0);
-			ft_lstclear(&new_list, del);
+			if (del)
+				ft_lstclear(&ret, del);
+			return (NULL);
 		}
-		ft_lstadd_back(&new_list, new_element);
+		ft_lstadd_back(&ret, temp);
 		lst = lst->next;
 	}
-	return (new_list);
+	return (ret);
 }

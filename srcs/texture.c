@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soohchoi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yomoon <yomoon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/09 00:56:34 by soohchoi          #+#    #+#             */
-/*   Updated: 2020/12/12 01:11:55 by soohchoi         ###   ########.fr       */
+/*   Created: 2021/02/15 22:11:51 by yomoon            #+#    #+#             */
+/*   Updated: 2021/02/20 16:31:26 by yomoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	load_img(t_info *info, int *tex, char *path, t_img *img)
 	img->img = mlx_xpm_file_to_image(info->mlx, path,\
 			&img->width, &img->height);
 	if (!img->img)
-			print_error(-1, "Error : Img loading failed\n", info);
+		print_error(-1, "Error : Img loading failed\n", info);
 	img->data = (int *)mlx_get_data_addr(img->img, &img->bpp,\
 			&img->size_l, &img->endian);
 	y = 0;
