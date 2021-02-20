@@ -6,7 +6,7 @@
 #    By: yomoon <yomoon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/10 11:21:07 by yomoon            #+#    #+#              #
-#    Updated: 2021/02/19 17:51:31 by yomoon           ###   ########.fr        #
+#    Updated: 2021/02/20 20:51:40 by yomoon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRCS		=	srcs/bmp.c srcs/check_map.c srcs/main.c srcs/get_next_line.c srcs/move_p
 BONUS		=	bonus/bmp.c bonus/check_map.c bonus/main.c bonus/get_next_line.c bonus/move_player.c\
 				bonus/parse.c bonus/parse_cub.c bonus/parse_cub_sub.c bonus/parse_map.c bonus/parse_map_sub.c\
 				bonus/raycasting.c bonus/raycasting_sub.c bonus/set_info.c bonus/sprite_raycasting.c\
-				bonus/sprite_raycasting_sub.c bonus/start_game.c bonus/texture.c bonus/utils.c bonus/floor_raycasting.c
+				bonus/sprite_raycasting_sub.c bonus/start_game.c bonus/texture.c bonus/utils.c
+
 OBJS		=	$(SRCS:.c=.o)
 BONUS_OBJS	=	$(BONUS:.c=.o)
 
